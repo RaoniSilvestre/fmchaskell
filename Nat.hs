@@ -1,6 +1,6 @@
 module Nat where
 
-import Prelude hiding (sum, mult, exp, quot, min)
+import Prelude hiding (sum, mult, exp, fact, fib, quot, min, max, div, quot, rem, gcd, lcm)
 
 data Nat = O | S Nat
     deriving ( Eq , Show )
@@ -20,3 +20,16 @@ mult n (S m) = sum (mult n m) n
 exp :: Nat -> Nat -> Nat
 exp n O = S O
 exp n (S m) = mult (exp n m) n
+
+min :: Nat -> Nat -> Nat
+min O O = O
+min O n = O
+min n O = O
+min (S n) (S m) = S(min n m)
+
+max :: Nat -> Nat -> Nat
+max O O = O
+max O n = n
+max n O = n
+max (S n) (S m) = S(max n m)
+
