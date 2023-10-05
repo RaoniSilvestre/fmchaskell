@@ -1,7 +1,8 @@
 module ListNat where
 import Prelude hiding (
     length, concat,sumList,sum,productList,mult,append,reverse,
-    allEven,allOdd,allZero,anyEven,anyOdd,anyZero,addNat,
+    allEven,allOdd,allZero,anyEven,anyOdd,anyZero,addNat, exp, min, max,
+    minimum, maximum,
     Bool, True, False)
 import Nat
 import Bool
@@ -68,4 +69,10 @@ expNat :: Nat -> ListNat -> ListNat
 expNat _ Empty = Empty
 expNat n (Cons x xs) = Cons (exp x n) (expNat n xs)
 
+minimum :: ListNat -> Nat
+minimum (Cons x Empty) = x
+minimum (Cons x xs) = min x (minimum xs)  
 
+maximum :: ListNat -> Nat
+maximum (Cons x Empty) = x
+maximum (Cons x xs) = max x (maximum xs)
