@@ -13,4 +13,8 @@ concat :: ListNat -> ListNat -> ListNat
 concat Empty xs = xs
 concat (Cons x xs) ys = Cons x (concat xs ys)
 
+sumList :: ListNat -> Nat
+sumList Empty = O
+sumList (Cons x xs) = sum x (sumList xs)
+
 
