@@ -1,9 +1,17 @@
-module ListNat where
-import Prelude hiding (length, concat,sumList,sum,productList,mult,append,reverse)
-import Nat
+//Nats
+O
+(S O)
+(S(S O))
+(S(S(S O)))
+(S(S(S(S O))))
+(S(S(S(S(S O)))))
 
-data ListNat = Empty | Cons Nat ListNat
-    deriving( Eq, Show)
+//ListNats
+Empty
+(Cons (S O) Empty) => [1]
+(Cons (S(S(S O))) (Cons (S(S O)) (Cons (S(S O)) Empty))) => [3,2]
+(Cons (S O) (Cons (S O) (Cons (S O) (Cons (S O) Empty)))) => [1,1,1,1]
+
 
 length :: ListNat -> Nat
 length Empty = O
@@ -28,4 +36,3 @@ append x (Cons y ys) = Cons y (append x ys)
 reverse :: ListNat -> ListNat
 reverse Empty = Empty
 reverse (Cons x xs) = append x (reverse xs)
-
