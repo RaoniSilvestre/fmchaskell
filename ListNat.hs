@@ -21,4 +21,8 @@ productList :: ListNat -> Nat
 productList Empty = (S O)
 productList (Cons x xs) = mult x (productList xs)
 
+append :: Nat -> ListNat -> ListNat
+append x Empty = (Cons x Empty)
+append x (Cons y ys) = Cons y (append x ys)
+
 
