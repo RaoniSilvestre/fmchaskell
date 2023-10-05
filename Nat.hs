@@ -1,10 +1,18 @@
 module Nat where
 
-import Prelude hiding (monus,sum, mult, exp, pred, fact, fib, quot, min, max, div, quot, rem, gcd, lcm)
+import Prelude hiding (
+    monus,sum, mult, exp, pred, fact,
+    fib, quot, min, max, div, quot, 
+    rem, gcd, lcm, True, False, Bool,
+    isOdd, isEven)
+import Bool
 
 data Nat = O | S Nat
     deriving ( Eq , Show )
 
+if_then_else_nat :: Bool -> Nat -> Nat -> Nat
+if_then_else_nat True n _ = n
+if_then_else_nat False _ m = m
 
 
 double :: Nat -> Nat 
@@ -44,4 +52,22 @@ pred :: Nat -> Nat
 pred O = O
 pred (S n) = n
 
+eq :: Nat -> Nat -> Bool
+eq O O = True
+eq (S n) (S m) = eq n m
+eq _ _ = False
 
+leq :: Nat -> Nat -> Bool
+leq _ O = False
+leq O _ = True
+leq (S n) (S m) = leq n m
+
+isOdd :: Nat -> Bool
+isOdd O = False
+isOdd (S O) = True
+isOdd (S(S n)) = isOdd n
+
+isEven :: Nat -> Bool
+isEven O = True
+isEven (S O) = False
+isEven (S(S n)) = isEven n
