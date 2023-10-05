@@ -71,3 +71,7 @@ isEven :: Nat -> Bool
 isEven O = True
 isEven (S O) = False
 isEven (S(S n)) = isEven n
+
+isZero :: Nat -> Bool
+isZero O = True
+isZero _ = False
