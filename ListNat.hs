@@ -9,4 +9,8 @@ length :: ListNat -> Nat
 length Empty = O
 length (Cons x xs) = S(length xs)
 
+concat :: ListNat -> ListNat -> ListNat
+concat Empty xs = xs
+concat (Cons x xs) ys = Cons x (concat xs ys)
+
 
