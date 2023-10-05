@@ -56,5 +56,16 @@ allZero :: ListNat -> Bool
 allZero Empty = True
 allZero (Cons x xs) = if_then_else (isZero x) (allZero xs) False
 
+addNat :: Nat -> ListNat -> ListNat
+addNat _ Empty = Empty
+addNat n (Cons x xs) = Cons (sum x n) (addNat n xs)
+
+multNat :: Nat -> ListNat -> ListNat
+multNat _ Empty = Empty
+multNat n (Cons x xs) = Cons (mult x n) (multNat n xs)
+
+expNat :: Nat -> ListNat -> ListNat
+expNat _ Empty = Empty
+expNat n (Cons x xs) = Cons (exp x n) (expNat n xs)
 
 
