@@ -17,4 +17,8 @@ sumList :: ListNat -> Nat
 sumList Empty = O
 sumList (Cons x xs) = sum x (sumList xs)
 
+productList :: ListNat -> Nat
+productList Empty = (S O)
+productList (Cons x xs) = mult x (productList xs)
+
 
