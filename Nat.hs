@@ -37,13 +37,11 @@ exp n O = S O
 exp n (S m) = mult (exp n m) n
 
 min :: Nat -> Nat -> Nat
-min O O = O
 min O n = O
 min n O = O
 min (S n) (S m) = S(min n m)
 
 max :: Nat -> Nat -> Nat
-max O O = O
 max O n = n
 max n O = n
 max (S n) (S m) = S(max n m)
