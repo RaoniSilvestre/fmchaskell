@@ -44,5 +44,17 @@ anyZero :: ListNat -> Bool
 anyZero Empty = False
 anyZero (Cons x xs) = if_then_else (isZero x) True (anyZero xs)
 
+allEven :: ListNat -> Bool
+allEven Empty = True
+allEven (Cons x xs) = if_then_else (isEven x) (allEven xs) False
+
+allOdd :: ListNat -> Bool
+allOdd Empty = True
+allOdd (Cons x xs) = if_then_else (isOdd x) (allOdd xs) False
+
+allZero :: ListNat -> Bool
+allZero Empty = True
+allZero (Cons x xs) = if_then_else (isZero x) (allZero xs) False
+
 
 
