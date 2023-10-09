@@ -11,6 +11,6 @@ O
 //ListNats
 Empty
 (Cons (S O) Empty) => [1]
-(Cons (S(S(S O))) (Cons (S(S O)) (Cons (S(S O)) Empty))) => [3,2]
+(Cons (S(S(S O))) (Cons (S(S O)) (Cons (S(S(S(S O)))) Empty))) => [3,2,4]
 (Cons (S O) (Cons (S O) (Cons (S O) (Cons (S O) Empty)))) => [1,1,1,1]
 (Cons (S(S(S O))) (Cons (S(S(S O))) (Cons (S(S O)) Empty)))
