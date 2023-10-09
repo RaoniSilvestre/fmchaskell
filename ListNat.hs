@@ -108,3 +108,27 @@ init (Cons x xs) = Cons x (init xs)
 last :: ListNat -> Nat
 last (Cons x Empty) = x
 last (Cons _ xs) = last xs
+
+pwAdd :: ListNat -> ListNat -> ListNat
+pwAdd (Cons x xs) (Cons y ys) = (Cons (sum x y) (pwAdd xs ys))
+pwAdd _ _ = Empty
+
+pwMult :: ListNat -> ListNat -> ListNat
+pwMult (Cons x xs) (Cons y ys) = (Cons (mult x y) (pwMult xs ys))
+pwMult _ _ = Empty
+
+filterEven :: ListNat -> ListNat
+filterEven (Cons x xs) = if_then_else_listNat (isEven x) (Cons x (filterEven xs)) (filterEven xs) 
+filterEven _ = Empty
+
+filterOdd :: ListNat -> ListNat
+filterOdd (Cons x xs) = if_then_else_listNat (isOdd x) (Cons x (filterOdd xs)) (filterOdd xs)
+filterOdd _ = Empty
+
+isSorted :: ListNat -> Bool
+isSorted (Cons x (Cons y ys)) = if_then_else (x <= y) (isSorted (Cons y ys)) False
+isSorted (Cons x Empty) = True
+
+mix :: ListNat -> ListNat -> ListNat
+mix (Cons x xs) (Cons y ys) = Cons x (Cons y (mix xs ys))
+mix _ _ = Empty
