@@ -2,7 +2,7 @@ module ListNat where
 import Prelude hiding (
     length, concat,sumList,sum,productList,mult,append,reverse,
     allEven,allOdd,allZero,anyEven,anyOdd,anyZero,addNat, exp, min, max,
-    minimum, maximum, enumFromTo, (<),(<=), take, drop,
+    minimum, maximum, enumFromTo, (<),(<=), take, drop, init, last,
     Bool, True, False)
 import Nat
 import Bool
@@ -95,4 +95,16 @@ drop :: Nat -> ListNat -> ListNat
 drop O xs = xs
 drop (S n) (Cons x xs) = drop n xs
 
- 
+head :: ListNat -> Nat
+head (Cons x xs) = x
+
+tail :: ListNat -> ListNat
+tail (Cons x xs) = xs
+
+init :: ListNat -> ListNat
+init (Cons x Empty) = Empty
+init (Cons x xs) = Cons x (init xs)
+
+last :: ListNat -> Nat
+last (Cons x Empty) = x
+last (Cons _ xs) = last xs
