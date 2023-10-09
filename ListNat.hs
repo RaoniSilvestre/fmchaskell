@@ -2,12 +2,16 @@ module ListNat where
 import Prelude hiding (
     length, concat,sumList,sum,productList,mult,append,reverse,
     allEven,allOdd,allZero,anyEven,anyOdd,anyZero,addNat, exp, min, max,
-    minimum, maximum,
+    minimum, maximum, enumFromTo, (<),(<=), take, drop,
     Bool, True, False)
 import Nat
 import Bool
 data ListNat = Empty | Cons Nat ListNat
     deriving( Eq, Show)
+
+if_then_else_listNat :: Bool -> ListNat -> ListNat -> ListNat
+if_then_else_listNat True n _ = n
+if_then_else_listNat False _ m = m
 
 length :: ListNat -> Nat
 length Empty = O
@@ -76,3 +80,19 @@ minimum (Cons x xs) = min x (minimum xs)
 maximum :: ListNat -> Nat
 maximum (Cons x Empty) = x
 maximum (Cons x xs) = max x (maximum xs)
+
+enumFromTo :: Nat -> Nat -> ListNat 
+enumFromTo n m  = if_then_else_listNat (n <= m) (Cons n (enumFromTo (S n) m)) (Empty) 
+
+enumTo :: Nat -> ListNat
+enumTo n = enumFromTo O n 
+
+take :: Nat-> ListNat -> ListNat
+take O _ = Empty
+take (S n) (Cons x xs) = Cons (x) (take n xs) 
+
+drop :: Nat -> ListNat -> ListNat
+drop O xs = xs
+drop (S n) (Cons x xs) = drop n xs
+
+ 
