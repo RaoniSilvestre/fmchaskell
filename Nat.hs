@@ -4,7 +4,7 @@ import Prelude hiding (
     monus,sum, mult, exp, pred, fact,
     fib, quot, min, max, div, quot, 
     rem, gcd, lcm, True, False, Bool,
-    isOdd, isEven)
+    isOdd, isEven, (<), (<=))
 import Bool
 
 data Nat = O | S Nat
@@ -73,3 +73,14 @@ isEven (S(S n)) = isEven n
 isZero :: Nat -> Bool
 isZero O = True
 isZero _ = False
+
+(<) :: Nat -> Nat -> Bool
+_ < O = False
+O < _ = True
+(S x) < (S y) = x < y
+
+(<=) :: Nat -> Nat -> Bool
+O <= O = True
+_ <= O = False
+O <= _ = True
+(S x) <= (S y) = x <= y
