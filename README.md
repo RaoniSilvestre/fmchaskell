@@ -1,6 +1,6 @@
 # Fundamentos Matemáticos para a Computação I - Haskell
 
-Este repositório é dedicado ao estudo e implementação de conceitos aprendidos na disciplina Fundamentos Matemáticos para a Computação I usando a linguagem Haskell. Aqui, encontram-se módulos que constroem tipos e um documento de valores de exemplo.
+Este repositório é dedicado ao estudo e implementação de conceitos aprendidos na disciplina Fundamentos Matemáticos para a Computação I, na parte de Introdução à Recursão e Indução usando a linguagem Haskell. Aqui, encontram-se módulos que constroem tipos, funções que utilizam esses tipos e um documento com valores de exemplo.
 
 ## Conteúdo
 
