@@ -132,3 +132,15 @@ isSorted (Cons x Empty) = True
 mix :: ListNat -> ListNat -> ListNat
 mix (Cons x xs) (Cons y ys) = Cons x (Cons y (mix xs ys))
 mix _ _ = Empty
+
+--Com colinha de hannah e ajuda de Paz, foi dificil sequer entender essa!
+elemIndices :: Nat -> ListNat -> ListNat
+elemIndices x (Cons y ys) = if_then_else_listNat (eq x y) (Cons O (addNat (S O) (elemIndices x ys))) ((addNat (S O) (elemIndices x ys)))
+elemIndices _ Empty = Empty
+
+interperse :: Nat -> ListNat -> ListNat
+interperse _ Empty = Empty
+interperse _ (Cons x Empty) = Cons x Empty
+interperse x (Cons y ys) = Cons y (Cons x (interperse x ys))
+
+isPrefixOf
