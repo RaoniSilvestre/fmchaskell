@@ -45,3 +45,9 @@ takewhile f (x : xs)
   | f x = x : takewhile f xs
   | otherwise = []
 
+
+dropwhile :: (a -> Bool) -> [a] -> [a]
+dropwhile _ [] = []
+dropwhile f (x : xs)
+  | f x = dropwhile f xs
+  | otherwise = x : xs
