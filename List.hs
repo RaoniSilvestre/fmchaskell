@@ -2,16 +2,10 @@
 
 module List where
 import Prelude hiding (
-    replicate,
-    sum,mult, exp, min, max,
-    minimum, maximum,(<),(<=),
-    Bool, True, False)
+    replicate, filter, all, any, zip, pwAdd, map,
+    sum,mult, exp, min, max, isEven, 
+    minimum, maximum,(<),(<=))
 import Nat
-import Bool
-data List a = Empty | Cons a (List a)
-    deriving( Eq, Show)
-
-replicate :: Nat -> a -> List a
-replicate O _ = Empty
-replicate (S n) a = Cons a (replicate n a)
-
+replicate :: Nat -> a -> [a]
+replicate O _ = []
+replicate (S n) a = a : replicate n a
