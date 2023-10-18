@@ -21,3 +21,10 @@ all _ [] = True
 all f (x : xs)
   | f x = all f xs
   | otherwise = False
+
+any :: (a -> Bool) -> [a] -> Bool
+any _ [] = False
+any f (x : xs)
+  | f x = True
+  | otherwise = any f xs
+
