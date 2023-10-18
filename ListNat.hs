@@ -9,10 +9,6 @@ import Bool
 data ListNat = Empty | Cons Nat ListNat
     deriving( Eq, Show)
 
-if_then_else_listNat :: Bool -> ListNat -> ListNat -> ListNat
-if_then_else_listNat True n _ = n
-if_then_else_listNat False _ m = m
-
 length :: ListNat -> Nat
 length Empty = O
 length (Cons x xs) = S(length xs)
@@ -142,5 +138,3 @@ interperse :: Nat -> ListNat -> ListNat
 interperse _ Empty = Empty
 interperse _ (Cons x Empty) = Cons x Empty
 interperse x (Cons y ys) = Cons y (Cons x (interperse x ys))
-
-isPrefixOf
