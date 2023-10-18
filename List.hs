@@ -38,3 +38,10 @@ zip = pw (,)
 pwAdd = pw (sum)
 pwMult = pw (mult)
 
+
+takewhile :: (a -> Bool) -> [a] -> [a]
+takewhile _ [] = []
+takewhile f (x : xs)
+  | f x = x : takewhile f xs
+  | otherwise = []
+
