@@ -28,3 +28,8 @@ any f (x : xs)
   | f x = True
   | otherwise = any f xs
 
+
+pw :: (a -> b -> c) -> [a] -> [b] -> [c]
+pw f (x : xs) (y : ys) = (f x y) : (pw f xs ys)
+pw f _ _ = []
+
