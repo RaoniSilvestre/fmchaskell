@@ -3,16 +3,12 @@ module Nat where
 import Prelude hiding (
     monus,sum, mult, exp, pred, fact,
     fib, quot, min, max, div, quot, 
-    rem, gcd, lcm, True, False, Bool,
+    rem, gcd, lcm,
     isOdd, isEven, (<), (<=))
-import Bool
+
 
 data Nat = O | S Nat
     deriving ( Eq , Show )
-
-if_then_else_nat :: Bool -> Nat -> Nat -> Nat
-if_then_else_nat True n _ = n
-if_then_else_nat False _ m = m
 
 
 double :: Nat -> Nat 
