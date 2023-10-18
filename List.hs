@@ -33,3 +33,8 @@ pw :: (a -> b -> c) -> [a] -> [b] -> [c]
 pw f (x : xs) (y : ys) = (f x y) : (pw f xs ys)
 pw f _ _ = []
 
+
+zip = pw (,)
+pwAdd = pw (sum)
+pwMult = pw (mult)
+
