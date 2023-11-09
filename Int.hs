@@ -1,24 +1,14 @@
 module Int where
+import Nat
+import Prelude hiding(simp,soma,Int, sum)
 
-
-import Prelude hiding(simp,soma,Int)
-
-data Int = O | S Int | P Int
+data Int = MkInt Nat Nat
     deriving ( Eq , Show )
 
+sumInt :: Int -> Int -> Int
+sumInt (MkInt n m) (MkInt u v) = canon(MkInt (sum n u) (sum m v)) 
 
-simp :: Int -> Int
-simp (P (S x)) = x
-simp (S (P x)) = x
-simp x = x
-
-soma :: Int -> Int -> Int
-soma x O = x
-soma O x = x
-soma (P x) (S y) = soma x y
-soma (S x) (P y) = soma x y
-soma x (S y) = simp(S(soma x y))
-soma x (P y) = simp(P(soma x y))
-
-
-
+canon :: Int -> Int
+canon (MkInt n O) = MkInt n O
+canon (MkInt O m) = MkInt O m
+canon (MkInt (S n) (S m)) = canon (MkInt n m)
