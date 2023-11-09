@@ -10,7 +10,6 @@ Este repositório é dedicado ao estudo e implementação de conceitos aprendido
 4. **Nat.hs**: Construção do tipo Nat e diversas funções. ( O | S Nat )
 5. **PairNat.hs**: Construção do tipo PairNat. ( Pair Nat Nat )
 6. **ListNat.hs**: Construção de listas de números naturais e suas operações. ( Empty | Cons Nat ListNat )
-7. **Nats_and_ListNats.txt**: Documento de texto com exemplos de Nats e ListNats.
 
 ## Como Utilizar
 
