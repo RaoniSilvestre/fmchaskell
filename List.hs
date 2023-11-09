@@ -2,10 +2,11 @@
 
 module List where
 import Prelude hiding (
-    replicate, filter, all, any, zip, pwAdd, map,
+    replicate, filter, all, any, zip, pwAdd, map, reverse, iter,
     sum,mult, exp, min, max, isEven, 
     minimum, maximum,(<),(<=))
 import Nat
+
 replicate :: Nat -> a -> [a]
 replicate O _ = []
 replicate (S n) a = a : replicate n a
@@ -56,3 +57,19 @@ dropwhile f (x : xs)
 map :: (a -> b) -> [a] -> [b]
 map _ [] = []
 map f (x : xs) = f x : map f xs
+
+append :: a -> [a] -> [a]
+append x [] = [x]
+append x (y:ys) = y : (append x ys)
+
+reverse :: [a] -> [a]
+reverse [] = []
+reverse (n:ns) = append n (reverse ns)
+
+iter :: (a -> a) -> Nat -> a -> a
+iter _ O a     = a
+iter f (S n) a = f (iter f n a)
+
+fold :: (a -> a -> a) -> a -> [a] -> a
+fold f x []     = x
+fold f x (y:ys) =  f y (fold f x ys)
