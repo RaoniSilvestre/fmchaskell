@@ -4,11 +4,28 @@ import Prelude hiding (
     monus,sum, mult, exp, pred, fact,
     fib, quot, min, max, div, quot, 
     rem, gcd, lcm,
-    isOdd, isEven, (<), (<=))
+    isOdd, isEven, (<=))
 
 
 data Nat = O | S Nat
     deriving ( Eq , Show )
+
+
+instance Num Nat where
+  (+) = sum
+  (*) = mult
+  (-) = monus
+  negate = error "Negativos não são Nats"
+  abs x = x
+  signum O = O
+  signum _ = S O
+  fromInteger = fi
+
+fi :: Integer -> Nat
+fi n
+  | n < 0      = error "Negativos não são Natts"
+  | n == 0     = O
+  | otherwise  = S (fi(n -1))
 
 
 double :: Nat -> Nat 
@@ -69,11 +86,11 @@ isEven (S(S n)) = isEven n
 isZero :: Nat -> Bool
 isZero O = True
 isZero _ = False
-
-(<) :: Nat -> Nat -> Bool
-_ < O = False
-O < _ = True
-(S x) < (S y) = x < y
+ 
+(<<) :: Nat -> Nat -> Bool
+_ << O = False
+O << _ = True
+(S x) << (S y) = x << y
 
 (<=) :: Nat -> Nat -> Bool
 O <= O = True
