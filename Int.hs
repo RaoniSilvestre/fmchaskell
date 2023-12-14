@@ -1,6 +1,6 @@
 module Int where
 import Nat
-import Prelude hiding(simp,soma,Int, sum)
+import Prelude hiding(Int, sum)
 
 data Int = MkInt Nat Nat
     deriving ( Eq , Show )

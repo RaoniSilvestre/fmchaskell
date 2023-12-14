@@ -4,12 +4,17 @@ module List where
 import Prelude hiding (
     replicate, filter, all, any, zip, pwAdd, map, reverse, iter,
     sum,mult, exp, min, max, isEven, 
-    minimum, maximum,(<),(<=))
+    minimum, maximum,(<),(<=), concat)
+    
 import Nat
 
 replicate :: Nat -> a -> [a]
 replicate O _ = []
 replicate (S n) a = a : replicate n a
+
+concat :: [a] -> [a] -> [a]
+concat [] xs = xs
+concat (x : xs) ys = x : (concat xs ys)
 
 filter :: (a -> Bool) -> [a] -> [a]
 filter _ [] = []
