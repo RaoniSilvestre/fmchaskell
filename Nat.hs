@@ -4,7 +4,7 @@ import Prelude hiding (
     monus,sum, mult, exp, pred, fact,
     fib, quot, min, max, div, quot, 
     rem, gcd, lcm,
-    isOdd, isEven, (<=))
+    isOdd, isEven, (<=), fib)
 
 
 data Nat = O | S Nat
@@ -87,6 +87,11 @@ isZero :: Nat -> Bool
 isZero O = True
 isZero _ = False
  
+fib :: Nat -> Nat
+fib O = O
+fib (S O) = S O
+fib (S(S n)) = sum (fib (S n)) (fib n)
+
 (<<) :: Nat -> Nat -> Bool
 _ << O = False
 O << _ = True
