@@ -32,9 +32,6 @@ eficleaves :: BinTree a -> [a] -> [a]
 eficleaves (Tip x) xs = x:xs
 eficleaves (BinTree l r) xs = eficleaves l (eficleaves r xs)
 
-
-
-
 mapTree :: (a -> b) -> BinTree a -> BinTree b
 mapTree f (Tip x) = Tip (f x)
 mapTree f (BinTree l r) = BinTree (mapTree f l) (mapTree f r)
@@ -50,3 +47,7 @@ sumTree (BinTree l r) = sum (sumTree l) (sumTree r)
 findTree :: (Eq a) => a -> BinTree a -> [[Nat]]
 findTree x (Tip y) = if x == y then [[]] else []
 findTree x (BinTree l r) = map (O:) (findTree x l) ++ (map ((S O):) (findTree x r))
+
+foldTree :: (a -> b -> b) -> b -> BinTree a -> b
+foldTree f z (Tip x) = f x z
+foldTree f z (BinTree l r) = foldTree f (foldTree f z r) l
