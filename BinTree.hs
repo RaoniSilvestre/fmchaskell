@@ -2,11 +2,12 @@
 module BinTree where
 
 import Nat
+import Path
 
 import Prelude hiding (
     replicate, filter, all, any, zip, pwAdd, reverse, iter,
     sum,mult, exp, min, max, isEven, 
-    minimum, maximum,(<),(<=), concat)
+    minimum, maximum,(<),(<=), concat, Path, Right, Left)
 
 data BinTree a = Tip a | BinTree (BinTree a) (BinTree a)
     deriving ( Eq , Show)
@@ -38,16 +39,16 @@ mapTree f (BinTree l r) = BinTree (mapTree f l) (mapTree f r)
 
 mirror :: BinTree a -> BinTree a
 mirror (BinTree l r) = BinTree  (mirror r) (mirror l)
-mirror x = x
+mirror t = t
 
 sumTree :: BinTree Nat -> Nat
 sumTree (Tip x) = x
 sumTree (BinTree l r) = sum (sumTree l) (sumTree r) 
 
-findTree :: (Eq a) => a -> BinTree a -> [[Nat]]
+findTree :: (Eq a) => a -> BinTree a -> [[Path]]
 findTree x (Tip y) = if x == y then [[]] else []
-findTree x (BinTree l r) = map (O:) (findTree x l) ++ (map ((S O):) (findTree x r))
+findTree x (BinTree l r) = map (Left:) (findTree x l) ++ (map (Right:) (findTree x r))
 
-foldTree :: (a -> b -> b) -> b -> BinTree a -> b
+foldTree :: (a -> a -> a) -> a -> BinTree a -> a
 foldTree f z (Tip x) = f x z
 foldTree f z (BinTree l r) = foldTree f (foldTree f z r) l
