@@ -21,6 +21,10 @@ instance Num Nat where
   signum _ = S O
   fromInteger = fi
 
+fn :: Nat -> Integer
+fn O = 0
+fn (S n) = 1 + fn n
+
 fi :: Integer -> Nat
 fi n
   | n < 0      = error "Negativos não são Natts"
