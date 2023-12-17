@@ -1,11 +1,13 @@
+{-# LANGUAGE GADTs #-}
+
 module ListNat where
+
 import Prelude hiding (
     length, concat,sumList,sum,productList,mult,append,reverse,
     allEven,allOdd,allZero,anyEven,anyOdd,anyZero,addNat, exp, min, max,
-    minimum, maximum, enumFromTo, (<),(<=), take, drop, init, last,
-    Bool, True, False)
+    minimum, maximum, enumFromTo, (<),(<=), take, drop, init, last)
 import Nat
-import Bool
+
 data ListNat = Empty | Cons Nat ListNat
     deriving( Eq, Show)
 
@@ -35,27 +37,39 @@ reverse (Cons x xs) = append x (reverse xs)
 
 anyEven :: ListNat -> Bool
 anyEven Empty = False
-anyEven (Cons x xs) = if_then_else (isEven x) True (anyEven xs)
+anyEven (Cons x xs)
+  | isEven x = True 
+  | otherwise = anyEven xs
  
 anyOdd :: ListNat -> Bool
 anyOdd Empty = False
-anyOdd (Cons x xs) = if_then_else (isOdd x) True (anyOdd xs)
+anyOdd (Cons x xs)
+  | isOdd x = True
+  | otherwise = anyOdd xs
 
 anyZero :: ListNat -> Bool
 anyZero Empty = False
-anyZero (Cons x xs) = if_then_else (isZero x) True (anyZero xs)
+anyZero (Cons x xs)
+  | isZero x   = True
+  | otherwise  = anyZero xs
 
 allEven :: ListNat -> Bool
 allEven Empty = True
-allEven (Cons x xs) = if_then_else (isEven x) (allEven xs) False
+allEven (Cons x xs) 
+  | isEven x  = allEven xs
+  | otherwise = False
 
 allOdd :: ListNat -> Bool
 allOdd Empty = True
-allOdd (Cons x xs) = if_then_else (isOdd x) (allOdd xs) False
+allOdd (Cons x xs)
+  | isOdd x   = allOdd xs
+  | otherwise = False
 
 allZero :: ListNat -> Bool
 allZero Empty = True
-allZero (Cons x xs) = if_then_else (isZero x) (allZero xs) False
+allZero (Cons x xs)
+  | isZero x   = allZero xs
+  | otherwise  = False
 
 addNat :: Nat -> ListNat -> ListNat
 addNat _ Empty = Empty
@@ -66,19 +80,21 @@ multNat _ Empty = Empty
 multNat n (Cons x xs) = Cons (mult x n) (multNat n xs)
 
 expNat :: Nat -> ListNat -> ListNat
-expNat _ Empty = Empty
+expNat _ Empty       = Empty
 expNat n (Cons x xs) = Cons (exp x n) (expNat n xs)
 
 minimum :: ListNat -> Nat
 minimum (Cons x Empty) = x
-minimum (Cons x xs) = min x (minimum xs)  
+minimum (Cons x xs)    = min x (minimum xs)  
 
 maximum :: ListNat -> Nat
 maximum (Cons x Empty) = x
-maximum (Cons x xs) = max x (maximum xs)
+maximum (Cons x xs)    = max x (maximum xs)
 
 enumFromTo :: Nat -> Nat -> ListNat 
-enumFromTo n m  = if_then_else_listNat (n <= m) (Cons n (enumFromTo (S n) m)) (Empty) 
+enumFromTo n m
+  | n <= m    = Cons n (enumFromTo (S n) m)
+  | otherwise = Empty 
 
 enumTo :: Nat -> ListNat
 enumTo n = enumFromTo O n 
@@ -114,27 +130,24 @@ pwMult (Cons x xs) (Cons y ys) = (Cons (mult x y) (pwMult xs ys))
 pwMult _ _ = Empty
 
 filterEven :: ListNat -> ListNat
-filterEven (Cons x xs) = if_then_else_listNat (isEven x) (Cons x (filterEven xs)) (filterEven xs) 
+filterEven (Cons x xs)
+  | (isEven x) = (Cons x (filterEven xs)) 
+  | otherwise  = (filterEven xs) 
 filterEven _ = Empty
 
 filterOdd :: ListNat -> ListNat
-filterOdd (Cons x xs) = if_then_else_listNat (isOdd x) (Cons x (filterOdd xs)) (filterOdd xs)
+filterOdd (Cons x xs)
+  | isOdd x = Cons x (filterOdd xs)
+  | otherwise = filterOdd xs
 filterOdd _ = Empty
 
 isSorted :: ListNat -> Bool
-isSorted (Cons x (Cons y ys)) = if_then_else (x <= y) (isSorted (Cons y ys)) False
+isSorted (Cons x (Cons y ys))
+  | x <= y = isSorted (Cons y ys)
+  | otherwise = False
 isSorted (Cons x Empty) = True
 
 mix :: ListNat -> ListNat -> ListNat
 mix (Cons x xs) (Cons y ys) = Cons x (Cons y (mix xs ys))
 mix _ _ = Empty
 
---Com colinha de hannah e ajuda de Paz, foi dificil sequer entender essa!
-elemIndices :: Nat -> ListNat -> ListNat
-elemIndices x (Cons y ys) = if_then_else_listNat (eq x y) (Cons O (addNat (S O) (elemIndices x ys))) ((addNat (S O) (elemIndices x ys)))
-elemIndices _ Empty = Empty
-
-interperse :: Nat -> ListNat -> ListNat
-interperse _ Empty = Empty
-interperse _ (Cons x Empty) = Cons x Empty
-interperse x (Cons y ys) = Cons y (Cons x (interperse x ys))

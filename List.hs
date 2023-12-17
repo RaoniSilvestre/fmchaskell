@@ -1,6 +1,7 @@
 {-# LANGUAGE GADTs #-}
 
 module List where
+
 import Prelude hiding (
     replicate, filter, all, any, zip, pwAdd, map, reverse, iter,
     sum,mult, exp, min, max, isEven, 
